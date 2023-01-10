@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewData["Title"] = "UpdateImg";
+}
+@model UpdateProductImgVM
+            <div class="container">
+              <div class="card mt-5">
+                <div class="card-body">
+                  <h4 class="card-title">Add Product</h4>
+                  <form class="forms-sample" enctype="multipart/form-data" method="post">    
+                      @foreach (var item in Model.ProductImages)
+                        {
+                           if (item.IsCover == true)
+                            {
+                                                   
+                                <div class="form-group">
+                              <label asp-for="CoverImage">CoverImage</label>
+                              <br>
+                              <img width="100" src="~/assets/images/product/@item.ImageUrl" />
+                              <input accept="image/*" asp-for="CoverImage" class="form-control" placeholder="CoverImage">
+                              <span asp-validation-for="CoverImage" class="text-danger"></span>
+                                </div>
+                            }   
+                            else
+                            {        
+                                <div class="form-group">
+                                      <label asp-for="OtherImages">OtherImages</label>
+                                      <br>
+                                      <img width="100" src="~/assets/images/product/@item.ImageUrl" />
+                                      <input accept="image/*" asp-for="OtherImages" class="form-control" placeholder="CoverImage">
+                                      <span asp-validation-for="OtherImages" class="text-danger"></span>
+                                    </div>
+                            }
+                            }
+                            @if (Model.OtherImages is null)
+                            {
+                                                               
+                                <div class="form-group">
+                                      <label asp-for="OtherImages">OtherImages</label>
+                                      <br>
+                                      <input accept="image/*" asp-for="OtherImages" class="form-control" placeholder="CoverImage">
+                                      <span asp-validation-for="OtherImages" class="text-danger"></span>
+                                    </div>
+                            }
+                    <button type="submit" class="btn btn-primary me-2">Submit</button>
+                    <a asp-action="Index" class="btn btn-light">Cancel</a>
+                  </form>
+                </div>
+              </div>
+            </div>
